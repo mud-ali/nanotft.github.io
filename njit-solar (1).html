@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NJIT Solar Car Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #CC0000;
+  --red-dark: #A80000;
+  --navy: #0B1C2E;
+  --white: #FFFFFF;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-400: #9CA3AF;
+  --gray-600: #4B5563;
+  --gray-800: #1F2937;
+  --text: #111827;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px;
+}
+.logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; cursor: pointer;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--red);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+.logo-sub {
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px; list-style: none;
+}
+.nav-links a {
+  padding: 8px 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-links a:hover { background: var(--gray-100); color: var(--text); }
+.nav-links a.active { color: var(--red); background: #FEF2F2; }
+.nav-contact {
+  background: var(--red) !important;
+  color: var(--white) !important;
+  border-radius: 6px !important;
+}
+.nav-contact:hover { background: var(--red-dark) !important; }
+
+/* ── PAGES ── */
+.page { display: none; padding-top: 68px; }
+.page.active { display: block; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 24px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: none;
+}
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: var(--red-dark); }
+.btn-outline { background: var(--white); color: var(--text); border: 1px solid var(--gray-200); }
+.btn-outline:hover { background: var(--gray-50); border-color: var(--gray-400); }
+.btn-white { background: var(--white); color: var(--navy); }
+.btn-white:hover { background: var(--gray-100); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  padding: 100px 64px;
+  min-height: 560px;
+  display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0; width: 40%;
+  background: linear-gradient(135deg, transparent 0%, rgba(204,0,0,0.08) 100%);
+  pointer-events: none;
+}
+.hero-content { max-width: 620px; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+  margin-bottom: 28px;
+}
+.hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.hero h1 span { color: #FF6B6B; }
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+  margin-bottom: 36px;
+  line-height: 1.75;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; gap: 40px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero-stat-num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* ── PAGE HEADER ── */
+.page-hero {
+  background: var(--navy);
+  padding: 64px 64px 56px;
+}
+.page-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.page-hero p { color: rgba(255,255,255,0.5); font-size: 0.975rem; max-width: 480px; }
+.breadcrumb {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 6px;
+}
+.breadcrumb a { color: var(--red); cursor: pointer; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ── SECTIONS ── */
+.section { padding: 72px 64px; }
+.section-alt { background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.section-desc { color: var(--gray-600); max-width: 520px; font-size: 0.975rem; }
+
+/* ── ABOUT SPLIT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.about-text p { color: var(--gray-600); margin-bottom: 14px; font-size: 0.975rem; }
+.about-image {
+  background: var(--gray-100);
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-image::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px; background: var(--red);
+  border-radius: 12px 12px 0 0;
+}
+
+/* ── SUBTEAMS ── */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.team-card {
+  background: var(--white);
+  padding: 28px 24px;
+  transition: background 0.15s;
+}
+.team-card:hover { background: var(--gray-50); }
+.team-card-icon {
+  width: 40px; height: 40px;
+  background: #FEF2F2;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+.team-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.team-card p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+
+/* ── MISSION ── */
+.mission-section {
+  background: var(--red);
+  padding: 80px 64px;
+  text-align: center;
+}
+.mission-section h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--white);
+  max-width: 640px;
+  margin: 0 auto 16px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.mission-section p { color: rgba(255,255,255,0.7); max-width: 440px; margin: 0 auto; }
+
+/* ── CTA ── */
+.cta-section {
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  padding: 72px 64px;
+  text-align: center;
+}
+.cta-section .section-title { margin-bottom: 12px; }
+.cta-section p { color: var(--gray-600); max-width: 440px; margin: 0 auto 32px; font-size: 0.975rem; }
+
+/* ── MEMBERS ── */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.member-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.member-card:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.member-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  border: 2px solid var(--gray-200);
+}
+.member-name { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.member-role { font-size: 0.75rem; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.member-major { font-size: 0.8rem; color: var(--gray-400); }
+
+/* ── SPONSORS ── */
+.tier-section { margin-bottom: 48px; }
+.tier-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.tier-name { font-size: 1rem; font-weight: 600; color: var(--text); }
+.tier-pill {
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px;
+}
+.gold-pill { background: #FEF9C3; color: #854D0E; }
+.silver-pill { background: #F1F5F9; color: #475569; }
+.bronze-pill { background: #FEF3C7; color: #92400E; }
+.sponsor-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.sponsor-box {
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-200);
+  border-radius: 8px;
+  aspect-ratio: 3/2;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; color: var(--gray-400);
+  transition: border-color 0.15s;
+}
+.sponsor-box:hover { border-color: var(--red); }
+.sponsor-cta {
+  background: var(--navy);
+  border-radius: 10px;
+  padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+  margin-top: 48px;
+}
+.sponsor-cta h3 { font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.sponsor-cta p { font-size: 0.875rem; color: rgba(255,255,255,0.5); }
+
+/* ── MEDIA ── */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+}
+.media-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.media-card:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.media-thumb {
+  background: var(--gray-100);
+  aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+.media-body { padding: 16px; }
+.media-date { font-size: 0.72rem; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.media-title { font-size: 0.875rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+
+.socials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 16px;
+}
+.social-box {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.social-box:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.social-box-icon { font-size: 1.5rem; }
+.social-box-name { font-size: 0.92rem; font-weight: 600; color: var(--text); }
+.social-box-handle { font-size: 0.78rem; color: var(--gray-400); }
+
+/* ── BLOG ── */
+.blog-featured {
+  background: var(--navy);
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  margin-top: 40px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.blog-feat-img {
+  background: var(--red);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  min-height: 280px;
+  position: relative;
+}
+.blog-feat-img::after {
+  content: 'FEATURED';
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 4px 10px; border-radius: 4px;
+}
+.blog-feat-body { padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; }
+.blog-feat-tag { font-size: 0.72rem; font-weight: 600; color: #FF6B6B; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.blog-feat-body h3 { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 10px; line-height: 1.3; letter-spacing: -0.01em; }
+.blog-feat-body p { color: rgba(255,255,255,0.5); font-size: 0.875rem; margin-bottom: 24px; }
+
+.blog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 16px;
+}
+.blog-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 24px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.blog-card:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.blog-tag {
+  display: inline-block;
+  background: #FEF2F2;
+  color: var(--red);
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 3px 10px; border-radius: 4px;
+  margin-bottom: 12px;
+}
+.blog-card h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+.blog-card p { font-size: 0.84rem; color: var(--gray-600); }
+.blog-meta {
+  display: flex; justify-content: space-between;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid var(--gray-100);
+  font-size: 0.75rem; color: var(--gray-400); font-weight: 500;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  padding: 56px 64px 0;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-brand-icon { width: 30px; height: 30px; background: var(--red); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.footer-brand-name { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.25); margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { font-size: 0.875rem; color: rgba(255,255,255,0.5); text-decoration: none; cursor: pointer; transition: color 0.15s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  padding: 20px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.78rem; color: rgba(255,255,255,0.2);
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav, .hero, .section, .section-alt, .mission-section, .cta-section, .page-hero, footer { padding-left: 32px; padding-right: 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .teams-grid { grid-template-columns: repeat(2, 1fr); }
+  .member-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 20px; } .nav-links { gap: 0; } .nav-links a { padding: 8px 10px; font-size: 0.8rem; }
+  .hero, .section, .section-alt, .mission-section, .cta-section, .page-hero, footer { padding-left: 20px; padding-right: 20px; }
+  .teams-grid, .media-grid, .blog-grid, .socials-grid, .sponsor-row { grid-template-columns: 1fr; }
+  .blog-featured { grid-template-columns: 1fr; }
+  .blog-feat-img { min-height: 180px; }
+  .sponsor-cta { flex-direction: column; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" onclick="showPage('home')">
+    <div class="logo-icon">☀️</div>
+    <div>
+      <div class="logo-text">NJIT Solar Car</div>
+      <div class="logo-sub">Student Racing Team</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a onclick="showPage('members')" id="nav-members">Members</a></li>
+    <li><a onclick="showPage('sponsors')" id="nav-sponsors">Sponsors</a></li>
+    <li><a onclick="showPage('media')" id="nav-media">Media</a></li>
+    <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+    <li><a href="mailto:solarcar@njit.edu" class="nav-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════ HOME ════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-tag"><div class="hero-tag-dot"></div>Student-Run · Est. 2017 · Newark, NJ</div>
+      <h1>Building Tomorrow's<br><span>Solar Vehicle</span> Today</h1>
+      <p class="hero-desc">The NJIT Solar Car Team designs, builds, and competes with a 100% solar-powered vehicle — giving students hands-on engineering experience and championing sustainable energy.</p>
+      <div class="hero-actions">
+        <a onclick="showPage('members')" class="btn btn-red" style="cursor:pointer">Meet the Team</a>
+        <a href="mailto:solarcar@njit.edu" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.2);background:transparent;">Get Involved</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">70+</div><div class="hero-stat-label">Active Members</div></div>
+        <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Solar Powered</div></div>
+        <div><div class="hero-stat-num">2017</div><div class="hero-stat-label">Founded</div></div>
+        <div><div class="hero-stat-num">6</div><div class="hero-stat-label">Subteams</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="section">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">About Us</div>
+        <div class="section-title">An Interdisciplinary Engineering Team</div>
+        <p class="about-text" style="color:var(--gray-600);font-size:0.975rem;margin-bottom:14px">The NJIT Solar Car Team is an entirely student-run organization dedicated to the research, design, and construction of NJIT's full-size solar-powered electric vehicle.</p>
+        <p style="color:var(--gray-600);font-size:0.975rem;margin-bottom:14px">Formed in spring 2017, we bring together students from every major — engineering, business, design, and more — united by a shared mission to push the limits of sustainable technology.</p>
+        <p style="color:var(--gray-600);font-size:0.975rem;margin-bottom:32px">We compete against top universities in solar car racing, giving every member real-world experience that no classroom can replicate.</p>
+        <a onclick="showPage('members')" class="btn btn-red" style="cursor:pointer">Meet the Team →</a>
+      </div>
+      <div class="about-image reveal" style="transition-delay:0.1s">🚗</div>
+    </div>
+  </div>
+
+  <!-- Subteams -->
+  <div class="section section-alt">
+    <div class="reveal">
+      <div class="section-label">Subteams</div>
+      <div class="section-title">Where You Fit In</div>
+      <p class="section-desc">We have six specialized subteams. No experience required — all majors welcome.</p>
+    </div>
+    <div class="teams-grid">
+      <div class="team-card reveal" style="transition-delay:0.05s"><div class="team-card-icon">🔋</div><h3>Electrical</h3><p>Power electronics, battery management, solar array integration, and motor control systems.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.08s"><div class="team-card-icon">⚙️</div><h3>Mechanical</h3><p>Chassis design, aerodynamics, suspension, braking, and structural engineering.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.11s"><div class="team-card-icon">💻</div><h3>Software</h3><p>Telemetry, embedded controls, and real-time data systems for race day.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.14s"><div class="team-card-icon">🌞</div><h3>Solar Array</h3><p>Photovoltaic cell layout, MPPT design, and maximizing energy harvest.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.17s"><div class="team-card-icon">🤝</div><h3>Business & Ops</h3><p>Sponsorships, logistics, outreach, budgeting, and competition strategy.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.2s"><div class="team-card-icon">🎨</div><h3>Design & Media</h3><p>Visual identity, vehicle wraps, social content, and team documentation.</p></div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="mission-section">
+    <div class="reveal">
+      <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:16px">Our Mission</div>
+      <h2>"Design, create, and compete — empowering the next generation of engineers through solar innovation."</h2>
+      <p style="margin-top:14px">We believe in learning by doing. Every student gains hands-on experience that no classroom can replicate.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;display:flex">Join Us</div>
+      <div class="section-title" style="text-align:center">Ready to Build Something Real?</div>
+      <p>No experience required. All majors welcome. Come to a meeting and see what we're working on.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:solarcar@njit.edu" class="btn btn-red">Email Us</a>
+        <a href="https://tinyurl.com/njitsolar" target="_blank" class="btn btn-outline">Join Discord</a>
+        <a href="https://www.instagram.com/njitsolarcar/" target="_blank" class="btn btn-outline">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-icon">☀️</div><div class="footer-brand-name">NJIT Solar Car Team</div></div><p class="footer-desc">A student-run team at New Jersey Institute of Technology building a 100% solar-powered race vehicle.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('sponsors')">Sponsors</a></li><li><a onclick="showPage('media')">Media</a></li><li><a onclick="showPage('blog')">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/njitsolarcar/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank">LinkedIn</a></li><li><a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a></li><li><a href="mailto:solarcar@njit.edu">Email</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li><li><a>323 MLK Jr Blvd</a></li><li><a>Newark, NJ 07102</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 NJIT Solar Car Team. All Rights Reserved.</p><p>Powered by sunlight & ambition.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════ MEMBERS ════════════ -->
+<div id="page-members" class="page">
+  <div class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Members</div>
+    <h1>Meet the Team</h1>
+    <p>70+ students from every major, united by one goal.</p>
+  </div>
+
+  <div class="section">
+    <div class="reveal"><div class="section-label">Leadership</div><div class="section-title">Executive Board</div></div>
+    <div class="member-grid">
+      <div class="member-card reveal" style="transition-delay:0.05s"><div class="member-avatar">👤</div><div class="member-name">President</div><div class="member-role">President</div><div class="member-major">Mechanical Engineering</div></div>
+      <div class="member-card reveal" style="transition-delay:0.08s"><div class="member-avatar">👤</div><div class="member-name">Vice President</div><div class="member-role">Vice President</div><div class="member-major">Electrical Engineering</div></div>
+      <div class="member-card reveal" style="transition-delay:0.11s"><div class="member-avatar">👤</div><div class="member-name">Chief Engineer</div><div class="member-role">Chief Engineer</div><div class="member-major">Computer Engineering</div></div>
+      <div class="member-card reveal" style="transition-delay:0.14s"><div class="member-avatar">👤</div><div class="member-name">Project Manager</div><div class="member-role">Project Manager</div><div class="member-major">Industrial Engineering</div></div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="reveal"><div class="section-label">Subteam Leads</div><div class="section-title">Team Leads</div></div>
+    <div class="teams-grid" style="margin-top:32px">
+      <div class="team-card reveal" style="transition-delay:0.05s"><div class="team-card-icon">🔋</div><h3>Electrical Lead</h3><p>Overseeing power systems, battery management, and motor control integration.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.08s"><div class="team-card-icon">⚙️</div><h3>Mechanical Lead</h3><p>Leading chassis design, aerodynamics, and all structural decisions.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.11s"><div class="team-card-icon">💻</div><h3>Software Lead</h3><p>Managing telemetry, embedded systems, and data pipelines.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.14s"><div class="team-card-icon">🌞</div><h3>Solar Array Lead</h3><p>Optimizing photovoltaic layout and MPPT efficiency for competition.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.17s"><div class="team-card-icon">🤝</div><h3>Business Lead</h3><p>Coordinating sponsorships, outreach, and team logistics.</p></div>
+      <div class="team-card reveal" style="transition-delay:0.2s"><div class="team-card-icon">🎨</div><h3>Media Lead</h3><p>Directing visual identity, social media, and content strategy.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="reveal">
+      <div class="section-label" style="justify-content:center;display:flex">Join the Team</div>
+      <div class="section-title" style="text-align:center">Want to Be Part of This?</div>
+      <p>All majors welcome. No prior experience required — just bring your drive.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:solarcar@njit.edu" class="btn btn-red">Email Us</a>
+        <a href="https://tinyurl.com/njitsolar" target="_blank" class="btn btn-outline">Join Discord</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-icon">☀️</div><div class="footer-brand-name">NJIT Solar Car Team</div></div><p class="footer-desc">A student-run team at NJIT building a 100% solar-powered race vehicle.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('sponsors')">Sponsors</a></li><li><a onclick="showPage('media')">Media</a></li><li><a onclick="showPage('blog')">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/njitsolarcar/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank">LinkedIn</a></li><li><a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 NJIT Solar Car Team. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════ SPONSORS ════════════ -->
+<div id="page-sponsors" class="page">
+  <div class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Sponsors</div>
+    <h1>Our Sponsors</h1>
+    <p>The organizations and companies that make our mission possible.</p>
+  </div>
+
+  <div class="section">
+    <div class="reveal"><div class="section-label">Partners</div><div class="section-title">Sponsoring Organizations</div></div>
+    <div style="margin-top:40px">
+      <div class="tier-section reveal" style="transition-delay:0.05s">
+        <div class="tier-header"><div class="tier-name">Gold Sponsors</div><span class="tier-pill gold-pill">Gold</span></div>
+        <div class="sponsor-row"><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div></div>
+      </div>
+      <div class="tier-section reveal" style="transition-delay:0.1s">
+        <div class="tier-header"><div class="tier-name">Silver Sponsors</div><span class="tier-pill silver-pill">Silver</span></div>
+        <div class="sponsor-row"><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div></div>
+      </div>
+      <div class="tier-section reveal" style="transition-delay:0.15s">
+        <div class="tier-header"><div class="tier-name">Bronze Sponsors</div><span class="tier-pill bronze-pill">Bronze</span></div>
+        <div class="sponsor-row"><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div><div class="sponsor-box">Your Logo</div></div>
+      </div>
+    </div>
+    <div class="sponsor-cta reveal" style="transition-delay:0.2s">
+      <div><h3>Become a Sponsor</h3><p>Support sustainable engineering and gain visibility with NJIT's student community.</p></div>
+      <a href="mailto:solarcar@njit.edu" class="btn btn-red">Get in Touch</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-icon">☀️</div><div class="footer-brand-name">NJIT Solar Car Team</div></div><p class="footer-desc">A student-run team at NJIT building a 100% solar-powered race vehicle.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('sponsors')">Sponsors</a></li><li><a onclick="showPage('media')">Media</a></li><li><a onclick="showPage('blog')">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/njitsolarcar/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank">LinkedIn</a></li><li><a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 NJIT Solar Car Team. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════ MEDIA ════════════ -->
+<div id="page-media" class="page">
+  <div class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Media</div>
+    <h1>Photos & Media</h1>
+    <p>Behind the scenes of building NJ's solar-powered race car.</p>
+  </div>
+
+  <div class="section">
+    <div class="reveal"><div class="section-label">Gallery</div><div class="section-title">Latest Updates</div></div>
+    <div class="media-grid">
+      <div class="media-card reveal" style="transition-delay:0.05s"><div class="media-thumb">🏗️</div><div class="media-body"><div class="media-date">March 2025</div><div class="media-title">Chassis fabrication begins in the NJIT machine shop</div></div></div>
+      <div class="media-card reveal" style="transition-delay:0.08s"><div class="media-thumb">⚡</div><div class="media-body"><div class="media-date">February 2025</div><div class="media-title">Electrical subteam completes battery management prototype</div></div></div>
+      <div class="media-card reveal" style="transition-delay:0.11s"><div class="media-thumb">☀️</div><div class="media-body"><div class="media-date">January 2025</div><div class="media-title">Solar panel efficiency testing on the NJIT campus roof</div></div></div>
+      <div class="media-card reveal" style="transition-delay:0.14s"><div class="media-thumb">🎓</div><div class="media-body"><div class="media-date">December 2024</div><div class="media-title">Team presentation at NJIT Engineering Showcase</div></div></div>
+      <div class="media-card reveal" style="transition-delay:0.17s"><div class="media-thumb">🔧</div><div class="media-body"><div class="media-date">November 2024</div><div class="media-title">Aerodynamic body panel CAD design finalized</div></div></div>
+      <div class="media-card reveal" style="transition-delay:0.2s"><div class="media-thumb">🏎️</div><div class="media-body"><div class="media-date">October 2024</div><div class="media-title">Team recruitment drive at NJIT involvement fair</div></div></div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="reveal"><div class="section-label">Social Media</div><div class="section-title">Follow Along</div></div>
+    <div class="socials-grid reveal" style="transition-delay:0.05s">
+      <a class="social-box" href="https://www.instagram.com/njitsolarcar/" target="_blank"><div class="social-box-icon">📸</div><div><div class="social-box-name">Instagram</div><div class="social-box-handle">@njitsolarcar</div></div></a>
+      <a class="social-box" href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank"><div class="social-box-icon">💼</div><div><div class="social-box-name">LinkedIn</div><div class="social-box-handle">NJIT Solar Car Club</div></div></a>
+      <a class="social-box" href="https://tinyurl.com/njitsolar" target="_blank"><div class="social-box-icon">💬</div><div><div class="social-box-name">Discord</div><div class="social-box-handle">Join the server</div></div></a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-icon">☀️</div><div class="footer-brand-name">NJIT Solar Car Team</div></div><p class="footer-desc">A student-run team at NJIT building a 100% solar-powered race vehicle.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('sponsors')">Sponsors</a></li><li><a onclick="showPage('media')">Media</a></li><li><a onclick="showPage('blog')">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/njitsolarcar/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank">LinkedIn</a></li><li><a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 NJIT Solar Car Team. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<!-- ════════════ BLOG ════════════ -->
+<div id="page-blog" class="page">
+  <div class="page-hero">
+    <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Blog</div>
+    <h1>Team Blog</h1>
+    <p>Progress reports, build logs, and stories from the team.</p>
+  </div>
+
+  <div class="section">
+    <div class="reveal"><div class="section-label">Latest</div><div class="section-title">Team Updates</div></div>
+    <div class="blog-featured reveal" style="transition-delay:0.05s">
+      <div class="blog-feat-img">🚘</div>
+      <div class="blog-feat-body">
+        <div class="blog-feat-tag">Announcement · March 2025</div>
+        <h3>We're Back — And Building Bigger Than Ever</h3>
+        <p>After a renewed kick-off in 2024, the team has grown to 70+ members and is making major progress on our first full-size solar vehicle. Here's where we stand going into 2025.</p>
+        <a href="#" class="btn btn-red" style="width:fit-content">Read More →</a>
+      </div>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal" style="transition-delay:0.05s"><span class="blog-tag">Electrical</span><h3>Battery Management System: Design Decisions</h3><p>A deep dive into how we chose our BMS architecture and the trade-offs between safety and performance.</p><div class="blog-meta"><span>Feb 2025</span><span>4 min read</span></div></div>
+      <div class="blog-card reveal" style="transition-delay:0.08s"><span class="blog-tag">Mechanical</span><h3>From CAD to Reality: Cutting the First Chassis Parts</h3><p>Our mechanical team shares the journey from SolidWorks renders to physical aluminum tubes in the shop.</p><div class="blog-meta"><span>Jan 2025</span><span>5 min read</span></div></div>
+      <div class="blog-card reveal" style="transition-delay:0.11s"><span class="blog-tag">Software</span><h3>Building Our Telemetry Dashboard from Scratch</h3><p>How the software team built a real-time data tool to monitor the car during testing.</p><div class="blog-meta"><span>Jan 2025</span><span>3 min read</span></div></div>
+      <div class="blog-card reveal" style="transition-delay:0.14s"><span class="blog-tag">Solar Array</span><h3>Testing Solar Panel Efficiency in NJ Weather</h3><p>Results from our outdoor efficiency tests and what they mean for competition planning.</p><div class="blog-meta"><span>Dec 2024</span><span>4 min read</span></div></div>
+      <div class="blog-card reveal" style="transition-delay:0.17s"><span class="blog-tag">Team</span><h3>Recruitment Recap: 30 New Members Join</h3><p>A look at our Fall 2024 recruitment drive and the fresh perspectives new members bring.</p><div class="blog-meta"><span>Nov 2024</span><span>2 min read</span></div></div>
+      <div class="blog-card reveal" style="transition-delay:0.2s"><span class="blog-tag">Business</span><h3>Securing Our First Industry Sponsor</h3><p>How the business team landed our first external partner and what we learned pitching to companies.</p><div class="blog-meta"><span>Oct 2024</span><span>3 min read</span></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand"><div class="footer-brand-icon">☀️</div><div class="footer-brand-name">NJIT Solar Car Team</div></div><p class="footer-desc">A student-run team at NJIT building a 100% solar-powered race vehicle.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('members')">Members</a></li><li><a onclick="showPage('sponsors')">Sponsors</a></li><li><a onclick="showPage('media')">Media</a></li><li><a onclick="showPage('blog')">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.instagram.com/njitsolarcar/" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/njitsolarcarclub/" target="_blank">LinkedIn</a></li><li><a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 NJIT Solar Car Team. All Rights Reserved.</p></div>
+  </footer>
+</div>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-links a[id]').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + name);
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(triggerReveals, 80);
+}
+function triggerReveals() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.page.active .reveal').forEach(r => { r.classList.remove('visible'); obs.observe(r); });
+}
+triggerReveals();
+</script>
+</body>
+</html>
