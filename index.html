@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NJIT Solar Car Team</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- NAV -->
+        <nav>
+            <a class="logo" onclick="showPage('home')">
+                <div class="logo-icon">☀️</div>
+                <div>
+                    <div class="logo-text">NJIT Solar Car</div>
+                    <div class="logo-sub">Student Racing Team</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+                <li><a onclick="showPage('members')" id="nav-members">Members</a></li>
+                <li><a onclick="showPage('sponsors')" id="nav-sponsors">Sponsors</a></li>
+                <li><a onclick="showPage('media')" id="nav-media">Media</a></li>
+                <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+                <li><a href="mailto:solarcar@njit.edu" class="nav-contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- ════════════ HOME ════════════ -->
+        <div id="page-home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <div class="hero-tag-dot"></div>
+                        Student-Run · Est. 2017 · Newark, NJ
+                    </div>
+                    <h1>Building Tomorrow's<br /><span>Solar Vehicle</span> Today</h1>
+                    <p class="hero-desc">
+                        The NJIT Solar Car Team designs, builds, and competes with a 100%
+                        solar-powered vehicle — giving students hands-on engineering experience and
+                        championing sustainable energy.
+                    </p>
+                    <div class="hero-actions">
+                        <a onclick="showPage('members')" class="btn btn-red" style="cursor: pointer"
+                            >Meet the Team</a
+                        >
+                        <a
+                            href="mailto:solarcar@njit.edu"
+                            class="btn btn-outline"
+                            style="
+                                color: #fff;
+                                border-color: rgba(255, 255, 255, 0.2);
+                                background: transparent;
+                            "
+                            >Get Involved</a
+                        >
+                    </div>
+                    <div class="hero-stats">
+                        <div>
+                            <div class="hero-stat-num">70+</div>
+                            <div class="hero-stat-label">Active Members</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-num">100%</div>
+                            <div class="hero-stat-label">Solar Powered</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-num">2017</div>
+                            <div class="hero-stat-label">Founded</div>
+                        </div>
+                        <div>
+                            <div class="hero-stat-num">6</div>
+                            <div class="hero-stat-label">Subteams</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="section">
+                <div class="about-grid">
+                    <div class="reveal">
+                        <div class="section-label">About Us</div>
+                        <div class="section-title">An Interdisciplinary Engineering Team</div>
+                        <p
+                            class="about-text"
+                            style="color: var(--gray-600); font-size: 0.975rem; margin-bottom: 14px"
+                        >
+                            The NJIT Solar Car Team is an entirely student-run organization
+                            dedicated to the research, design, and construction of NJIT's full-size
+                            solar-powered electric vehicle.
+                        </p>
+                        <p style="color: var(--gray-600); font-size: 0.975rem; margin-bottom: 14px">
+                            Formed in spring 2017, we bring together students from every major —
+                            engineering, business, design, and more — united by a shared mission to
+                            push the limits of sustainable technology.
+                        </p>
+                        <p style="color: var(--gray-600); font-size: 0.975rem; margin-bottom: 32px">
+                            We compete against top universities in solar car racing, giving every
+                            member real-world experience that no classroom can replicate.
+                        </p>
+                        <a onclick="showPage('members')" class="btn btn-red" style="cursor: pointer"
+                            >Meet the Team →</a
+                        >
+                    </div>
+                    <div class="about-image reveal" style="transition-delay: 0.1s">🚗</div>
+                </div>
+            </div>
+
+            <!-- Subteams -->
+            <div class="section section-alt">
+                <div class="reveal">
+                    <div class="section-label">Subteams</div>
+                    <div class="section-title">Where You Fit In</div>
+                    <p class="section-desc">
+                        We have six specialized subteams. No experience required — all majors
+                        welcome.
+                    </p>
+                </div>
+                <div class="teams-grid">
+                    <div class="team-card reveal" style="transition-delay: 0.05s">
+                        <div class="team-card-icon">🔋</div>
+                        <h3>Electrical</h3>
+                        <p>
+                            Power electronics, battery management, solar array integration, and
+                            motor control systems.
+                        </p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.08s">
+                        <div class="team-card-icon">⚙️</div>
+                        <h3>Mechanical</h3>
+                        <p>
+                            Chassis design, aerodynamics, suspension, braking, and structural
+                            engineering.
+                        </p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.11s">
+                        <div class="team-card-icon">💻</div>
+                        <h3>Software</h3>
+                        <p>
+                            Telemetry, embedded controls, and real-time data systems for race day.
+                        </p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.14s">
+                        <div class="team-card-icon">🌞</div>
+                        <h3>Solar Array</h3>
+                        <p>Photovoltaic cell layout, MPPT design, and maximizing energy harvest.</p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.17s">
+                        <div class="team-card-icon">🤝</div>
+                        <h3>Business & Ops</h3>
+                        <p>
+                            Sponsorships, logistics, outreach, budgeting, and competition strategy.
+                        </p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.2s">
+                        <div class="team-card-icon">🎨</div>
+                        <h3>Design & Media</h3>
+                        <p>
+                            Visual identity, vehicle wraps, social content, and team documentation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="mission-section">
+                <div class="reveal">
+                    <div
+                        style="
+                            font-size: 0.72rem;
+                            font-weight: 600;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: rgba(255, 255, 255, 0.6);
+                            margin-bottom: 16px;
+                        "
+                    >
+                        Our Mission
+                    </div>
+                    <h2>
+                        "Design, create, and compete — empowering the next generation of engineers
+                        through solar innovation."
+                    </h2>
+                    <p style="margin-top: 14px">
+                        We believe in learning by doing. Every student gains hands-on experience
+                        that no classroom can replicate.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <div class="reveal">
+                    <div class="section-label" style="justify-content: center; display: flex">
+                        Join Us
+                    </div>
+                    <div class="section-title" style="text-align: center">
+                        Ready to Build Something Real?
+                    </div>
+                    <p>
+                        No experience required. All majors welcome. Come to a meeting and see what
+                        we're working on.
+                    </p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap">
+                        <a href="mailto:solarcar@njit.edu" class="btn btn-red">Email Us</a>
+                        <a
+                            href="https://tinyurl.com/njitsolar"
+                            target="_blank"
+                            class="btn btn-outline"
+                            >Join Discord</a
+                        >
+                        <a
+                            href="https://www.instagram.com/njitsolarcar/"
+                            target="_blank"
+                            class="btn btn-outline"
+                            >Instagram</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">
+                            <div class="footer-brand-icon">☀️</div>
+                            <div class="footer-brand-name">NJIT Solar Car Team</div>
+                        </div>
+                        <p class="footer-desc">
+                            A student-run team at New Jersey Institute of Technology building a 100%
+                            solar-powered race vehicle.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a onclick="showPage('home')">Home</a></li>
+                            <li><a onclick="showPage('members')">Members</a></li>
+                            <li><a onclick="showPage('sponsors')">Sponsors</a></li>
+                            <li><a onclick="showPage('media')">Media</a></li>
+                            <li><a onclick="showPage('blog')">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/njitsolarcar/" target="_blank"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/njitsolarcarclub/"
+                                    target="_blank"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a>
+                            </li>
+                            <li><a href="mailto:solarcar@njit.edu">Email</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li>
+                            <li><a>323 MLK Jr Blvd</a></li>
+                            <li><a>Newark, NJ 07102</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NJIT Solar Car Team. All Rights Reserved.</p>
+                    <p>Powered by sunlight & ambition.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ════════════ MEMBERS ════════════ -->
+        <div id="page-members" class="page">
+            <div class="page-hero">
+                <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Members</div>
+                <h1>Meet the Team</h1>
+                <p>70+ students from every major, united by one goal.</p>
+            </div>
+
+            <div class="section">
+                <div class="reveal">
+                    <div class="section-label">Leadership</div>
+                    <div class="section-title">Executive Board</div>
+                </div>
+                <div class="member-grid">
+                    <div class="member-card reveal" style="transition-delay: 0.05s">
+                        <div class="member-avatar">👤</div>
+                        <div class="member-name">President</div>
+                        <div class="member-role">President</div>
+                        <div class="member-major">Mechanical Engineering</div>
+                    </div>
+                    <div class="member-card reveal" style="transition-delay: 0.08s">
+                        <div class="member-avatar">👤</div>
+                        <div class="member-name">Vice President</div>
+                        <div class="member-role">Vice President</div>
+                        <div class="member-major">Electrical Engineering</div>
+                    </div>
+                    <div class="member-card reveal" style="transition-delay: 0.11s">
+                        <div class="member-avatar">👤</div>
+                        <div class="member-name">Chief Engineer</div>
+                        <div class="member-role">Chief Engineer</div>
+                        <div class="member-major">Computer Engineering</div>
+                    </div>
+                    <div class="member-card reveal" style="transition-delay: 0.14s">
+                        <div class="member-avatar">👤</div>
+                        <div class="member-name">Project Manager</div>
+                        <div class="member-role">Project Manager</div>
+                        <div class="member-major">Industrial Engineering</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-alt">
+                <div class="reveal">
+                    <div class="section-label">Subteam Leads</div>
+                    <div class="section-title">Team Leads</div>
+                </div>
+                <div class="teams-grid" style="margin-top: 32px">
+                    <div class="team-card reveal" style="transition-delay: 0.05s">
+                        <div class="team-card-icon">🔋</div>
+                        <h3>Electrical Lead</h3>
+                        <p>
+                            Overseeing power systems, battery management, and motor control
+                            integration.
+                        </p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.08s">
+                        <div class="team-card-icon">⚙️</div>
+                        <h3>Mechanical Lead</h3>
+                        <p>Leading chassis design, aerodynamics, and all structural decisions.</p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.11s">
+                        <div class="team-card-icon">💻</div>
+                        <h3>Software Lead</h3>
+                        <p>Managing telemetry, embedded systems, and data pipelines.</p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.14s">
+                        <div class="team-card-icon">🌞</div>
+                        <h3>Solar Array Lead</h3>
+                        <p>Optimizing photovoltaic layout and MPPT efficiency for competition.</p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.17s">
+                        <div class="team-card-icon">🤝</div>
+                        <h3>Business Lead</h3>
+                        <p>Coordinating sponsorships, outreach, and team logistics.</p>
+                    </div>
+                    <div class="team-card reveal" style="transition-delay: 0.2s">
+                        <div class="team-card-icon">🎨</div>
+                        <h3>Media Lead</h3>
+                        <p>Directing visual identity, social media, and content strategy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <div class="reveal">
+                    <div class="section-label" style="justify-content: center; display: flex">
+                        Join the Team
+                    </div>
+                    <div class="section-title" style="text-align: center">
+                        Want to Be Part of This?
+                    </div>
+                    <p>All majors welcome. No prior experience required — just bring your drive.</p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap">
+                        <a href="mailto:solarcar@njit.edu" class="btn btn-red">Email Us</a>
+                        <a
+                            href="https://tinyurl.com/njitsolar"
+                            target="_blank"
+                            class="btn btn-outline"
+                            >Join Discord</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">
+                            <div class="footer-brand-icon">☀️</div>
+                            <div class="footer-brand-name">NJIT Solar Car Team</div>
+                        </div>
+                        <p class="footer-desc">
+                            A student-run team at NJIT building a 100% solar-powered race vehicle.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a onclick="showPage('home')">Home</a></li>
+                            <li><a onclick="showPage('members')">Members</a></li>
+                            <li><a onclick="showPage('sponsors')">Sponsors</a></li>
+                            <li><a onclick="showPage('media')">Media</a></li>
+                            <li><a onclick="showPage('blog')">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/njitsolarcar/" target="_blank"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/njitsolarcarclub/"
+                                    target="_blank"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NJIT Solar Car Team. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ════════════ SPONSORS ════════════ -->
+        <div id="page-sponsors" class="page">
+            <div class="page-hero">
+                <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Sponsors</div>
+                <h1>Our Sponsors</h1>
+                <p>The organizations and companies that make our mission possible.</p>
+            </div>
+
+            <div class="section">
+                <div class="reveal">
+                    <div class="section-label">Partners</div>
+                    <div class="section-title">Sponsoring Organizations</div>
+                </div>
+                <div style="margin-top: 40px">
+                    <div class="tier-section reveal" style="transition-delay: 0.05s">
+                        <div class="tier-header">
+                            <div class="tier-name">Gold Sponsors</div>
+                            <span class="tier-pill gold-pill">Gold</span>
+                        </div>
+                        <div class="sponsor-row">
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                        </div>
+                    </div>
+                    <div class="tier-section reveal" style="transition-delay: 0.1s">
+                        <div class="tier-header">
+                            <div class="tier-name">Silver Sponsors</div>
+                            <span class="tier-pill silver-pill">Silver</span>
+                        </div>
+                        <div class="sponsor-row">
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                        </div>
+                    </div>
+                    <div class="tier-section reveal" style="transition-delay: 0.15s">
+                        <div class="tier-header">
+                            <div class="tier-name">Bronze Sponsors</div>
+                            <span class="tier-pill bronze-pill">Bronze</span>
+                        </div>
+                        <div class="sponsor-row">
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                            <div class="sponsor-box">Your Logo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sponsor-cta reveal" style="transition-delay: 0.2s">
+                    <div>
+                        <h3>Become a Sponsor</h3>
+                        <p>
+                            Support sustainable engineering and gain visibility with NJIT's student
+                            community.
+                        </p>
+                    </div>
+                    <a href="mailto:solarcar@njit.edu" class="btn btn-red">Get in Touch</a>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">
+                            <div class="footer-brand-icon">☀️</div>
+                            <div class="footer-brand-name">NJIT Solar Car Team</div>
+                        </div>
+                        <p class="footer-desc">
+                            A student-run team at NJIT building a 100% solar-powered race vehicle.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a onclick="showPage('home')">Home</a></li>
+                            <li><a onclick="showPage('members')">Members</a></li>
+                            <li><a onclick="showPage('sponsors')">Sponsors</a></li>
+                            <li><a onclick="showPage('media')">Media</a></li>
+                            <li><a onclick="showPage('blog')">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/njitsolarcar/" target="_blank"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/njitsolarcarclub/"
+                                    target="_blank"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NJIT Solar Car Team. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ════════════ MEDIA ════════════ -->
+        <div id="page-media" class="page">
+            <div class="page-hero">
+                <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Media</div>
+                <h1>Photos & Media</h1>
+                <p>Behind the scenes of building NJ's solar-powered race car.</p>
+            </div>
+
+            <div class="section">
+                <div class="reveal">
+                    <div class="section-label">Gallery</div>
+                    <div class="section-title">Latest Updates</div>
+                </div>
+                <div class="media-grid">
+                    <div class="media-card reveal" style="transition-delay: 0.05s">
+                        <div class="media-thumb">🏗️</div>
+                        <div class="media-body">
+                            <div class="media-date">March 2025</div>
+                            <div class="media-title">
+                                Chassis fabrication begins in the NJIT machine shop
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card reveal" style="transition-delay: 0.08s">
+                        <div class="media-thumb">⚡</div>
+                        <div class="media-body">
+                            <div class="media-date">February 2025</div>
+                            <div class="media-title">
+                                Electrical subteam completes battery management prototype
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card reveal" style="transition-delay: 0.11s">
+                        <div class="media-thumb">☀️</div>
+                        <div class="media-body">
+                            <div class="media-date">January 2025</div>
+                            <div class="media-title">
+                                Solar panel efficiency testing on the NJIT campus roof
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card reveal" style="transition-delay: 0.14s">
+                        <div class="media-thumb">🎓</div>
+                        <div class="media-body">
+                            <div class="media-date">December 2024</div>
+                            <div class="media-title">
+                                Team presentation at NJIT Engineering Showcase
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card reveal" style="transition-delay: 0.17s">
+                        <div class="media-thumb">🔧</div>
+                        <div class="media-body">
+                            <div class="media-date">November 2024</div>
+                            <div class="media-title">
+                                Aerodynamic body panel CAD design finalized
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-card reveal" style="transition-delay: 0.2s">
+                        <div class="media-thumb">🏎️</div>
+                        <div class="media-body">
+                            <div class="media-date">October 2024</div>
+                            <div class="media-title">
+                                Team recruitment drive at NJIT involvement fair
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-alt">
+                <div class="reveal">
+                    <div class="section-label">Social Media</div>
+                    <div class="section-title">Follow Along</div>
+                </div>
+                <div class="socials-grid reveal" style="transition-delay: 0.05s">
+                    <a
+                        class="social-box"
+                        href="https://www.instagram.com/njitsolarcar/"
+                        target="_blank"
+                        ><div class="social-box-icon">📸</div>
+                        <div>
+                            <div class="social-box-name">Instagram</div>
+                            <div class="social-box-handle">@njitsolarcar</div>
+                        </div></a
+                    >
+                    <a
+                        class="social-box"
+                        href="https://www.linkedin.com/in/njitsolarcarclub/"
+                        target="_blank"
+                        ><div class="social-box-icon">💼</div>
+                        <div>
+                            <div class="social-box-name">LinkedIn</div>
+                            <div class="social-box-handle">NJIT Solar Car Club</div>
+                        </div></a
+                    >
+                    <a class="social-box" href="https://tinyurl.com/njitsolar" target="_blank"
+                        ><div class="social-box-icon">💬</div>
+                        <div>
+                            <div class="social-box-name">Discord</div>
+                            <div class="social-box-handle">Join the server</div>
+                        </div></a
+                    >
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">
+                            <div class="footer-brand-icon">☀️</div>
+                            <div class="footer-brand-name">NJIT Solar Car Team</div>
+                        </div>
+                        <p class="footer-desc">
+                            A student-run team at NJIT building a 100% solar-powered race vehicle.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a onclick="showPage('home')">Home</a></li>
+                            <li><a onclick="showPage('members')">Members</a></li>
+                            <li><a onclick="showPage('sponsors')">Sponsors</a></li>
+                            <li><a onclick="showPage('media')">Media</a></li>
+                            <li><a onclick="showPage('blog')">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/njitsolarcar/" target="_blank"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/njitsolarcarclub/"
+                                    target="_blank"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NJIT Solar Car Team. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ════════════ BLOG ════════════ -->
+        <div id="page-blog" class="page">
+            <div class="page-hero">
+                <div class="breadcrumb"><a onclick="showPage('home')">Home</a> / Blog</div>
+                <h1>Team Blog</h1>
+                <p>Progress reports, build logs, and stories from the team.</p>
+            </div>
+
+            <div class="section">
+                <div class="reveal">
+                    <div class="section-label">Latest</div>
+                    <div class="section-title">Team Updates</div>
+                </div>
+                <div class="blog-featured reveal" style="transition-delay: 0.05s">
+                    <div class="blog-feat-img">🚘</div>
+                    <div class="blog-feat-body">
+                        <div class="blog-feat-tag">Announcement · March 2025</div>
+                        <h3>We're Back — And Building Bigger Than Ever</h3>
+                        <p>
+                            After a renewed kick-off in 2024, the team has grown to 70+ members and
+                            is making major progress on our first full-size solar vehicle. Here's
+                            where we stand going into 2025.
+                        </p>
+                        <a href="#" class="btn btn-red" style="width: fit-content">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-grid">
+                    <div class="blog-card reveal" style="transition-delay: 0.05s">
+                        <span class="blog-tag">Electrical</span>
+                        <h3>Battery Management System: Design Decisions</h3>
+                        <p>
+                            A deep dive into how we chose our BMS architecture and the trade-offs
+                            between safety and performance.
+                        </p>
+                        <div class="blog-meta"><span>Feb 2025</span><span>4 min read</span></div>
+                    </div>
+                    <div class="blog-card reveal" style="transition-delay: 0.08s">
+                        <span class="blog-tag">Mechanical</span>
+                        <h3>From CAD to Reality: Cutting the First Chassis Parts</h3>
+                        <p>
+                            Our mechanical team shares the journey from SolidWorks renders to
+                            physical aluminum tubes in the shop.
+                        </p>
+                        <div class="blog-meta"><span>Jan 2025</span><span>5 min read</span></div>
+                    </div>
+                    <div class="blog-card reveal" style="transition-delay: 0.11s">
+                        <span class="blog-tag">Software</span>
+                        <h3>Building Our Telemetry Dashboard from Scratch</h3>
+                        <p>
+                            How the software team built a real-time data tool to monitor the car
+                            during testing.
+                        </p>
+                        <div class="blog-meta"><span>Jan 2025</span><span>3 min read</span></div>
+                    </div>
+                    <div class="blog-card reveal" style="transition-delay: 0.14s">
+                        <span class="blog-tag">Solar Array</span>
+                        <h3>Testing Solar Panel Efficiency in NJ Weather</h3>
+                        <p>
+                            Results from our outdoor efficiency tests and what they mean for
+                            competition planning.
+                        </p>
+                        <div class="blog-meta"><span>Dec 2024</span><span>4 min read</span></div>
+                    </div>
+                    <div class="blog-card reveal" style="transition-delay: 0.17s">
+                        <span class="blog-tag">Team</span>
+                        <h3>Recruitment Recap: 30 New Members Join</h3>
+                        <p>
+                            A look at our Fall 2024 recruitment drive and the fresh perspectives new
+                            members bring.
+                        </p>
+                        <div class="blog-meta"><span>Nov 2024</span><span>2 min read</span></div>
+                    </div>
+                    <div class="blog-card reveal" style="transition-delay: 0.2s">
+                        <span class="blog-tag">Business</span>
+                        <h3>Securing Our First Industry Sponsor</h3>
+                        <p>
+                            How the business team landed our first external partner and what we
+                            learned pitching to companies.
+                        </p>
+                        <div class="blog-meta"><span>Oct 2024</span><span>3 min read</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-grid">
+                    <div>
+                        <div class="footer-brand">
+                            <div class="footer-brand-icon">☀️</div>
+                            <div class="footer-brand-name">NJIT Solar Car Team</div>
+                        </div>
+                        <p class="footer-desc">
+                            A student-run team at NJIT building a 100% solar-powered race vehicle.
+                        </p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a onclick="showPage('home')">Home</a></li>
+                            <li><a onclick="showPage('members')">Members</a></li>
+                            <li><a onclick="showPage('sponsors')">Sponsors</a></li>
+                            <li><a onclick="showPage('media')">Media</a></li>
+                            <li><a onclick="showPage('blog')">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.instagram.com/njitsolarcar/" target="_blank"
+                                    >Instagram</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/njitsolarcarclub/"
+                                    target="_blank"
+                                    >LinkedIn</a
+                                >
+                            </li>
+                            <li>
+                                <a href="https://tinyurl.com/njitsolar" target="_blank">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:solarcar@njit.edu">solarcar@njit.edu</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NJIT Solar Car Team. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
